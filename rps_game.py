@@ -2,14 +2,21 @@ import random
 
 options = ("rock", "paper", "scissors")
 playing = True
+player_score = 0
+computer_score = 0
 
 while playing:
 
-    player = input("Enter a choice (rock, paper, scissors): ")
+    print("\nPlayer Score:", player_score, "Computer Score:", computer_score)
 
-    while player.lower() not in options:
-        print("Invalid choice. Please enter either 'rock', 'paper', or 'scissors'.")
-        player = input("Enter a choice (rock, paper, scissors): ")
+    player = input("Enter a choice (rock, paper, scissors) or 'q' to quit: ").lower()
+
+    if player == 'q':
+        break 
+
+    if player not in options:
+        print("Invalid choice. Please enter either 'rock', 'paper', 'scissors', or 'q' to quit.")
+        continue  
 
     computer = random.choice(options)
 
@@ -19,17 +26,17 @@ while playing:
     if player == computer:
         print("It's a tie!")
     elif player == "rock" and computer == "scissors":
-        print("You win!")
+        print("You win 🥳!")
     elif player == "paper" and computer == "rock":
-        print("You win!")
+        print("You win 🥳!")
     elif player == "scissors" and computer == "paper":
-        print("You win!")
+        print("You win 🥳!")
+        player_score += 1
     else:
-        print("You lose!")
-
-    if not input("Play again? (y/n): ").lower() == "y":
-        playing = False
-
+        print("You lose 😥!")
+        computer_score += 1
+        
+print("\nFinal Scores= Player:", player_score, "Computer:", computer_score)
 print("Thank you for playing!")
 
 
